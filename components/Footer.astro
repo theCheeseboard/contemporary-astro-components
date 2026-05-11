@@ -1,0 +1,80 @@
+---
+import Grid from "./Grid.astro";
+import GridSlice from "./GridSlice.astro";
+import LogoContainer from "./Header/LogoContainer.astro";
+import {FooterLink} from "./FooterLinks.ts";
+
+interface Props {
+    logo: string,
+    application: string,
+    footerLinks: readonly FooterLink[]
+}
+
+const {logo, application, footerLinks}: Props = Astro.props;
+---
+
+<footer>
+    <Grid>
+        <GridSlice>
+            <LogoContainer logo={logo} application={application} />
+        </GridSlice>
+    </Grid>
+    <Grid>
+        <GridSlice width={12}>
+            <div class="footer-links">
+                {footerLinks.map(link => {
+                    if (link === "separator") {
+                        return <div class="line" />
+                    } else {
+                        return <a href={link.href}>{link.text}</a>
+                    }
+                })}
+            </div>
+        </GridSlice>
+    </Grid>
+    <Grid>
+        <GridSlice class="left">
+            <span class="copyright-notice">&copy; Victor Tran, 2026.</span>
+        </GridSlice>
+    </Grid>
+</footer>
+
+<style>
+    footer {
+        background-color: var(--layer-color);
+
+        border-top-left-radius: 4px;
+        border-top-right-radius: 4px;
+    }
+
+    .left {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+    }
+
+    .copyright-notice {
+        font-size: 12px;
+        opacity: 0.7;
+    }
+
+    .footer-links {
+        opacity: 0.7;
+        display: flex;
+        align-items: stretch;
+        gap: 16px;
+    }
+
+    .footer-links a {
+        color: var(--foreground-color);
+    }
+
+    .line {
+        width: 1px;
+        background-color: var(--foreground-color);
+    }
+
+    .footer-links a:hover {
+        text-decoration: underline;
+    }
+</style>

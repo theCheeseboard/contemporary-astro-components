@@ -1,0 +1,67 @@
+---
+import HeaderItem from "./HeaderItem.astro";
+import LogoContainer from "./LogoContainer.astro";
+import SocialIcons from "./SocialIcons.astro";
+import {SocialLinks} from "./SocialLinks.ts";
+
+interface Props {
+    logo: string,
+    application: string,
+    socialLinks: readonly SocialLinks[]
+}
+
+const { logo, application, socialLinks } = Astro.props;
+---
+
+<div class="header">
+    <a href="/">
+        <LogoContainer logo={logo} application={application} />
+    </a>
+    <div class="items">
+        <HeaderItem href="/">
+            Home
+        </HeaderItem>
+        <HeaderItem href="/download">
+            Download
+        </HeaderItem>
+        <div class="line">
+            <div />
+        </div>
+    </div>
+    <SocialIcons socialLinks={socialLinks} />
+</div>
+
+<style>
+    a {
+        color: var(--foreground-color);
+    }
+
+    .header {
+        display: flex;
+        flex-direction: column;
+        padding: 16px;
+
+        flex-grow: 1;
+    }
+
+    .items {
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+
+        padding-top: 16px;
+
+        flex-grow: 1;
+    }
+
+    .line {
+        display: flex;
+        justify-content: center;
+    }
+
+    .line > div {
+        width: 80%;
+        height: 1px;
+        background-color: var(--layer-color);
+    }
+</style>

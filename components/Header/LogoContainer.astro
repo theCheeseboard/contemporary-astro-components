@@ -1,0 +1,28 @@
+---
+interface Props {
+    logo: string,
+    application: string,
+}
+
+const { logo, application } = Astro.props;
+---
+
+<div class="logo-container">
+    <img src={logo} alt={`${application} Logo`} />
+    {application}
+</div>
+
+<style>
+    .logo-container {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        font-size: 24px;
+    }
+
+    .logo-container img {
+        width: 32px;
+        height: 32px;
+        border-radius: 50%;
+    }
+</style>

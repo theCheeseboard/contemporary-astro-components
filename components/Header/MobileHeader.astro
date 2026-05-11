@@ -1,0 +1,38 @@
+---
+import LogoContainer from "./LogoContainer.astro";
+import SocialIcons from "./SocialIcons.astro";
+import {SocialLinks} from "./SocialLinks.ts";
+
+interface Props {
+    logo: string,
+    application: string,
+    socialLinks: readonly SocialLinks[]
+}
+
+const { logo, application, socialLinks } = Astro.props;
+---
+
+<div class="mobile-header">
+    <a href="/">
+        <LogoContainer logo={logo} application={application} />
+    </a>
+    <div class="filler" />
+    <SocialIcons socialLinks={socialLinks} />
+</div>
+
+<style>
+    a {
+        color: var(--foreground-color);
+    }
+
+    .mobile-header {
+        display: flex;
+        align-items: center;
+
+        flex-grow: 1;
+    }
+
+    .filler {
+        flex-grow: 1;
+    }
+</style>
