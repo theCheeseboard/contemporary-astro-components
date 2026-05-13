@@ -5,6 +5,7 @@ export {default as Grid} from "./components/Grid.astro";
 export {default as GridSlice} from "./components/GridSlice.astro";
 export {default as Footer} from "./components/Footer.astro";
 export {default as NotFoundContents} from "./components/NotFoundContents.astro";
+export {default as MasterLayout} from "./components/MasterLayout.astro";
 
 export * from "./components/Header/index.js";
 export * from "./components/FooterLinks.ts";
